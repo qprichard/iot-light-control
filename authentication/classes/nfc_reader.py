@@ -3,6 +3,9 @@ from time import sleep
 
 class NFCReader():
     def __init__(self):
+        """
+        connect the nefc reader
+        """
         self.clf = nfc.ContactlessFrontend('usb')
         assert self.clf.open('usb') is True
 
@@ -10,14 +13,25 @@ class NFCReader():
         self.is_listening = False
 
     def read_tag(self):
+        """
+        launch listening until it find a card to read
+        """
         self.tag = self.clf.connect(rdwr={'on-connect': lambda tag: False, 'beep-on-connect': True})
 
-    def listen(self):
+    def listen(self, on_reading = None):
+        """
+        reload the listening each time it's done
+        launch actions on tag reading
+        """
         self.is_listening = True
         self.read_tag()
         while(self.is_listening):
             if self.tag is not None:
-                UID = self.get_UID(self.tag)    
+                UID = self.get_UID(self.tag)
+
+                if on_reading is not None:
+                    on_reading(UID)
+
                 sleep(1)
                 self.read_tag()
 
@@ -48,6 +62,3 @@ class NFCReader():
 
     def green(self):
         self.clf.device.turn_off_led_and_buzzer()
-
-my_reader = NFCReader()
-my_reader.listen()
