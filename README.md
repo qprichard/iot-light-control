@@ -49,3 +49,7 @@ reload the mosquitto service to reload configuration file
 
 
 [paho documentation](https://pypi.org/project/paho-mqtt/)
+
+###SQLite configuration
+
+* pip install pysqlite3 db-sqlite3
