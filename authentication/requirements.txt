@@ -1,2 +1,0 @@
-nfcpy
-paho-mqtt
