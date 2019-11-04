@@ -1,0 +1,6 @@
+BROKER_USR = ""
+BROKER_PWD = ""
+HOST = ""
+TOPIC_BASE = ""
+SCRIPT_DB = ""
+DB_NAME = ""
