@@ -69,7 +69,8 @@ class Database():
             table_params = con.execute(f"PRAGMA table_info({table})");
             table_params = table_params.fetchall()
             table_params = [ elem[1] for elem in table_params]
-            table_params.remove('id')
+            if 'id' in table_params.keys():
+                table_params.remove('id')
 
             has_params = f"({params})" if params else f"({','.join(table_params)})";
 
@@ -119,12 +120,14 @@ class Database():
 
         try:
             con = lite.connect(self.db_name)
+            con.row_factory = lite.Row
             cur = con.cursor()
             print(sql)
             cur.execute(sql)
 
-            rows = cur.fetchall() if many else cur.fetchone()
-            return rows
+            #rows = cur.fetchall() if many else cur.fetchone()
+            result = [dict(row) for row in cur.fetchall()]
+            return result
 
         except lite.Error as e:
             if con:
