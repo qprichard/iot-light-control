@@ -11,8 +11,8 @@ def action(data):
         results = db.select(table='users', conditions=[("card_uid", data["card_uid"])])
         if len(results) > 0 :
             data['authorization'] = "granted"
-            data['last_name'] = results[0][""]
-            data['first_name'] = results[0][""]
+            data['last_name'] = results[0]["last_name"]
+            data['first_name'] = results[0]["first_name"]
         else:
             data['authorization'] = "failed"
 

@@ -25,7 +25,8 @@ mqtt_client.connect(SERVER_URL)
 
 def on_reading(uid):
     msg = {
-        'uid': uid,
+        'flag':'authentication'
+        'card_uid': uid,
         'response_topic': f"{TOPIC_BASE}/validateAuthentication",
     }
 
