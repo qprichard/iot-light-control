@@ -23,13 +23,28 @@ Test scan:
 #### pip installation
 * pip install nfcpy
 
+#### blacklist
+
+in `/etc/modprobe.d/blacklist-libnfc.conf` add:
+
+```bash=
+blacklist nfc
+blacklist pn533
+blacklist pn533_usb
+```
+```
+modprobe -r pn533_usb
+modprobe -r pn533
+modprobe -r nfc
+```
+`sudo service restart pcscd`
+
 
 ### paho mqtt installation
 
 * sudo apt install mosquitto mosquitto-clients
 
 Il vous faudra créer un fichier de users mosquitto
-[source]([paho documentation](https://pypi.org/project/paho-mqtt/))
 
 
 `mosquitto_passwd -c <passwordfile> <username>` (username required to create the file)
@@ -47,7 +62,7 @@ password_file <path>
 
 reload the mosquitto service to reload configuration file
 
-
+* pip install paho-mqtt
 [paho documentation](https://pypi.org/project/paho-mqtt/)
 
 ###SQLite configuration

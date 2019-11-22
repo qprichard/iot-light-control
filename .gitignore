@@ -1,3 +1,4 @@
 env/
 authentication/public/config.py
 server/public/config.py
+authentication/classes/__pycache__/
