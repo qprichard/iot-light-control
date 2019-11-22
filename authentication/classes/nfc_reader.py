@@ -25,18 +25,18 @@ class NFCReader():
         """
         self.is_listening = True
         self.read_tag()
-        while(self.is_listening):
+        while self.is_listening:
             if self.tag is not None:
                 UID = self.get_UID(self.tag)
 
                 if on_reading is not None:
                     on_reading(UID)
 
-                sleep(1)
-                self.read_tag()
-
     def stop_listening(self):
         self.is_listening = False
+
+    def start_listening(self):
+        self.is_listening = True
 
     def shutdown(self):
         self.is_listening = False
