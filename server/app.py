@@ -10,13 +10,13 @@ def action(data):
     if data['flag'] == "authentication":
         results = db.select(table='users', conditions=[("card_uid", data["card_uid"])])
         if len(results) > 0 :
-            data['authorization'] = "granted"
+            data['authorization'] = 1
             data['last_name'] = results[0]["last_name"]
             data['first_name'] = results[0]["first_name"]
         else:
             # Si authorization failed enregistrer dans une table pour permettre
             # de proposer à l'admin de l'enregistrer en tant que user
-            data['authorization'] = "failed"
+            data['authorization'] = 0
 
     return data
 

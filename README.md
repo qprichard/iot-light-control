@@ -39,6 +39,12 @@ modprobe -r nfc
 ```
 `sudo service restart pcscd`
 
+### sense-hat Installation
+
+`sudo apt install sense-hat`
+`sudo reboot`
+`pip install sense-hat`
+
 
 ### paho mqtt installation
 
