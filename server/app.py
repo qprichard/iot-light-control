@@ -14,6 +14,8 @@ def action(data):
             data['last_name'] = results[0]["last_name"]
             data['first_name'] = results[0]["first_name"]
         else:
+            # Si authorization failed enregistrer dans une table pour permettre
+            # de proposer à l'admin de l'enregistrer en tant que user
             data['authorization'] = "failed"
 
     return data
@@ -36,10 +38,9 @@ server.loop_forever()
 
 
 # tuples = (
-#     ('85AF54', 'Bocquet', 'Anthony'),
-#     ('GLJG54', 'Ouakrim', 'Yanis'),
+#     ('044feb1a875681', 'Ouakrim', 'Yanis'),
 # )
-#db.insert('users', tuples, many=True);
+# db.insert('users', tuples, many=True);
 
 # print(db.select('users' , many=True))
 # db.update('users', [('last_name', 'richard'), ('first_name', 'quentin')], conditions=[('last_name', 'quentin'), ('first_name', 'richard')])

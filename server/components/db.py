@@ -69,7 +69,7 @@ class Database():
             table_params = con.execute(f"PRAGMA table_info({table})");
             table_params = table_params.fetchall()
             table_params = [ elem[1] for elem in table_params]
-            if 'id' in table_params.keys():
+            if 'id' in table_params:
                 table_params.remove('id')
 
             has_params = f"({params})" if params else f"({','.join(table_params)})";

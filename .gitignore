@@ -1,4 +1,5 @@
 env/
 authentication/public/config.py
 server/public/config.py
+server/*.db
 authentication/classes/__pycache__/
