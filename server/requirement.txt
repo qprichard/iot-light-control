@@ -1,0 +1,5 @@
+pyjwt
+bottle
+pysqlite3
+db-sqlite3
+paho-mqtt

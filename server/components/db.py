@@ -8,6 +8,8 @@ import sqlite3 as lite
 import sys
 import os
 
+from public.config import SCRIPT_DB, DB_NAME
+
 class Database():
     def __init__(self, db_name, db_script=None):
         self.db_name  = db_name
@@ -168,3 +170,32 @@ class Database():
             print(f'Error: {e.args[0]}')
         finally:
             con.close()
+
+    def delete(self, table, conditions=None):
+        try:
+            con = lite.connect(self.db_name)
+            cur = con.cursor()
+
+            sql = f"DELETE FROM {table}"
+
+            if conditions:
+                sql_conditions = []
+                for condition in conditions:
+                    sql_conditions.append(f"{condition[0]}='{condition[1]}'")
+                sql_conditions = " and ".join(sql_conditions)
+                sql += " WHERE "+sql_conditions
+            sql+=";"
+
+
+            cur.execute(sql)
+            con.commit()
+            print(f'tuple deleted: {sql}')
+            
+        except lite.Error as e:
+            if con:
+                con.rollback()
+            print(f'Error: {e.args[0]}')
+        finally:
+            con.close()
+
+my_database = Database(db_name=DB_NAME, db_script=SCRIPT_DB)
