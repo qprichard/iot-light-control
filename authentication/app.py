@@ -28,6 +28,18 @@ class RaspberryAuthentication():
 
         if msg['authorization'] == 1:
             self.sense.set_color((0,255,0))
+            self.nfc.red_buzz()
+            time.sleep(1.5)
+            self.sense.clear()
+            self.nfc.green()
+        else:
+            for i in range(3):
+                self.sense.set_color((255,0,0))
+                self.nfc.red_buzz()
+                time.sleep(0.25)
+            self.nfc.green()
+            self.sense.clear()
+
         print(msg)
         self.loop_flag = 0
 
