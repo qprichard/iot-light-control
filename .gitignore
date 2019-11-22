@@ -3,3 +3,4 @@ authentication/public/config.py
 server/public/config.py
 server/*.db
 authentication/classes/__pycache__/
+server/bottle.log
