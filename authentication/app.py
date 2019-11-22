@@ -1,4 +1,5 @@
 from classes.mqtt import MQTT
+from classes.sense_hat import SenseManager
 import paho.mqtt.client as mqtt
 import json
 import time
@@ -11,6 +12,7 @@ from public.config import BROKER_PWD, BROKER_USR, SERVER_URL, TOPIC_BASE, CLIENT
 class RaspberryAuthentication():
     def __init__(self):
         self.nfc = NFCReader()
+        self.sense = SenseManager()
         self.loop_flag = 0
 
         self.mqtt_client = mqtt.Client(CLIENT_ID, True)
@@ -24,7 +26,19 @@ class RaspberryAuthentication():
         msg = message.payload.decode('utf-8')
         msg = json.loads(msg)
 
+        if msg['authorization'] == 1:
+            self.sense.set_color((0,255,0))
+            self.nfc.red_buzz()
+            time.sleep(1.5)
+        else:
+            for i in range(3):
+                self.sense.set_color((255,0,0))
+                self.nfc.red_buzz()
+                time.sleep(0.25)
+        self.nfc.green()
+        self.sense.clear()
         print(msg)
+
         self.loop_flag = 0
 
 

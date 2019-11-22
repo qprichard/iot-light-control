@@ -1,2 +1,3 @@
 nfcpy
 paho-mqtt
+sense-hat
