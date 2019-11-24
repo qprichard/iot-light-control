@@ -2,6 +2,7 @@ from bottle import route, get, post, delete, hook, response, request
 
 from components.user import User
 from components.auth_log import AuthLog
+from utils.authenticate import authenticate as auth_verification
 
 import json
 
@@ -19,7 +20,8 @@ def authenticate():
     return User().basic_authentication(login, password)
 
 @get('/auth_log')
-def get_auth_log():
+@auth_verification
+def get_auth_log(user=None):
     data = json.loads(request.body.read())
     card_uid = data.get('card_uid', None)
 

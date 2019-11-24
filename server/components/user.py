@@ -51,7 +51,7 @@ class User():
         try:
             db.insert('users', (card_uid, last_name, first_name, login, password))
             db.delete('auth_log', [('card_uid', card_uid)])
-            
+
             results = db.select('users', conditions=[('login', login)])
             if len(results) == 0:
                 return 1
@@ -74,7 +74,10 @@ class User():
             if self.verify_password(results[0]['password'],password):
                 token = jwt.encode({'login': login}, JWT_SECRET_KEY, algorithm='HS256')
                 token = token.decode('utf-8')
-                db.insert('tokens', (token))
+                token = str(token)
+                db.insert('tokens', [token])
+                del results[0]['id']
+                del results[0]['password']
                 return {'user': results[0], 'token': token }
 
         except Exception as e:

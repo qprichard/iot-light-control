@@ -12,7 +12,7 @@ CREATE TABLE users(
 /*Table authentication tokens*/
 DROP TABLE IF EXISTS tokens;
 CREATE TABLE tokens(
-  token VARCHAR(100) NOT NULL
+  token VARCHAR(150) NOT NULL
 );
 
 /*Table log authentication try*/
