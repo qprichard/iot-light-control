@@ -4,3 +4,7 @@ server/public/config.py
 server/*.db
 authentication/classes/__pycache__/
 server/bottle.log
+app/src/config.js
+app/node_modules/
+app/package-lock.json 
+
