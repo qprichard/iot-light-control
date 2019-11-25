@@ -88,12 +88,14 @@ class Database():
             con.close()
 
 
-    def select(self, table=None, conditions=None, params=None, query=None, many=False):
+    def select(self, table=None, conditions=None, params=None, query=None, many=False, limit=None, order=None):
         """
             table = string
             conditions = list of tuples [(param, value, operator="="), (...,...,...)]
             params = tuple
             query = string
+            limit = number
+            order = [None, 'asc', 'desc']
         """
         assert table is not None if conditions is not None else True
         assert table is None and conditions is None if query is not None else True
@@ -115,7 +117,14 @@ class Database():
                 sql_conditions = " and ".join(sql_conditions)
 
             sql_conditions = f" WHERE {sql_conditions}" if sql_conditions else "";
-            sql = f"SELECT {params if params else '*'} FROM {table}{ sql_conditions };"
+            sql = f"SELECT {params if params else '*'} FROM {table}{ sql_conditions }"
+
+            if order:
+                sql+= f" ORDER BY id {order}"
+
+            if limit:
+                sql += f" LIMIT {limit}"
+            sql+=";"
 
         if query:
             sql = query;
@@ -190,7 +199,7 @@ class Database():
             cur.execute(sql)
             con.commit()
             print(f'tuple deleted: {sql}')
-            
+
         except lite.Error as e:
             if con:
                 con.rollback()

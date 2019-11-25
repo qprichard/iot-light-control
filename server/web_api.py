@@ -17,15 +17,20 @@ def authenticate():
     data = json.loads(request.body.read())
     login = data.get('login')
     password = data.get('password')
-    return User().basic_authentication(login, password)
 
+    my_response = User().basic_authentication(login, password)
+    if my_response == 1:
+        response.status = 401
+        return { "error": "Failed Authentication." }
+    return my_response
 @get('/auth_log')
 @auth_verification
 def get_auth_log(user=None):
-    data = json.loads(request.body.read())
+    data = request.query.decode()
     card_uid = data.get('card_uid', None)
+    limit = data.get('limit', None)
 
-    return AuthLog().get(card_uid)
+    return AuthLog().get(card_uid, limit)
 
 @delete('/auth_log')
 def delete_auth_log():

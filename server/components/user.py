@@ -3,6 +3,9 @@ import hashlib, binascii, os, jwt, json, time, datetime
 from public.config import JWT_SECRET_KEY
 from components.db import my_database as db
 
+class FailedAuth(Exception):
+    pass
+
 class User():
     def card_authentication(self, data):
         if data['flag'] == "authentication":
@@ -69,8 +72,7 @@ class User():
             results = db.select(table='users', conditions=[('login', login)])
 
             if len(results) == 0:
-                return 1
-
+                raise FailedAuth
             if self.verify_password(results[0]['password'],password):
                 token = jwt.encode({'login': login}, JWT_SECRET_KEY, algorithm='HS256')
                 token = token.decode('utf-8')
@@ -80,6 +82,11 @@ class User():
                 del results[0]['password']
                 return {'user': results[0], 'token': token }
 
+            raise FailedAuth
+
+        except FailedAuth:
+            print('Failed authentication')
+            return 1
         except Exception as e:
             print(e)
             return 1
