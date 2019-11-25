@@ -25,15 +25,17 @@ const Log = () => {
               <th>ID </th>
               <th>Card UID</th>
               <th>Date</th>
+              <th>Access</th>
           </tr>
         </thead>
         <tbody>
           {
-            Object.entries(logs).map(([_, {id, card_uid, log_date}]) => (
-              <tr>
+            Object.entries(logs).map(([_, {id, card_uid, log_date, granted}]) => (
+              <tr key={id}>
                 <td>{ id }</td>
                 <td>{ card_uid }</td>
                 <td>{log_date}</td>
+                <td>{ granted ? 'GRANTED' : 'REFUSED'}</td>
               </tr>
             ))
           }

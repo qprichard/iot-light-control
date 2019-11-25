@@ -1,9 +1,11 @@
 @import "../colors.scss";
 
 .menu {
-  padding: 50px;
+  background-color: $dark-blue;
+  padding:50px;
 
   .menu-title {
+    float: left;
     color: $white;
     text-align: left;
     font-size: 2em;
@@ -11,5 +13,19 @@
   }
 
   .menu-content {
+    float: right;
+    .nav-button {
+      display:  inline;
+      cursor: pointer;
+      color: $white;
+      border: solid 3px $white;
+      margin: 10px;
+      padding: 5px;
+      font-size: 1.5em;
+      &:hover {
+        color: $dark-blue;
+        background-color: $white;
+      }
+    }
   }
 }

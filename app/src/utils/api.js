@@ -59,3 +59,39 @@ export function fetch_logs(limit, set) {
     }
   ).catch((e) => { return; })
 }
+
+export function get_users(set) {
+  fetch_api('GET', '/users').then(
+    async(response) => {
+      if(response.status !== 200) {
+        return;
+      }
+      const rep = await response.json()
+      set(rep)
+    }
+  ).catch(() => {return; })
+}
+
+export function create_user(data, set) {
+  fetch_api('POST', '/users', data).then(
+    async(response) => {
+      if(response.status !== 200) {
+        return;
+      }
+      const rep = await response.json()
+      set(rep)
+    }
+  ).catch(() => {return; })
+}
+
+export function delete_user(data, set) {
+  fetch_api('DELETE', '/users', data).then(
+    async(response) => {
+      if(response.status !== 200) {
+        return;
+      }
+      const rep = await response.json()
+      set(rep)
+    }
+  ).catch(() => {return; })
+}

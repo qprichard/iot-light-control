@@ -13,18 +13,62 @@ body {
   text-align: center;
 
   .main-top {
-    background-color: $dark-blue;
+
   }
 
   .main-container {
 
     .main-management {
-      width: 70%;
+      width: 60%;
       float: left;
+
+      .management {
+        .users-page {
+          .users-title{
+            font-size: 1.5em;
+            font-weight: bold;
+          }
+
+          .user-list {
+            float: left;
+            .user-list-title {
+              font-size: 1.2em;
+              font-weight: bold;
+            }
+            table {
+              margin: 20px auto;
+              text-align: left;
+              border: solid;
+              td {
+                padding: 5px;
+              }
+              thead {
+                text-align: center;
+                background-color: grey;
+              }
+            }
+          }
+
+          .user-create {
+            float: right;
+            .user-create-title {
+              font-size: 1.2em;
+              font-weight: bold;
+            }
+
+            text-align: center;
+
+            input{
+              margin: 5px auto;
+              display: block;
+            }
+          }
+        }
+      }
     }
 
     .main-log {
-      width: 30%;
+      width: 40%;
       float: right;
     }
   }
