@@ -55,14 +55,34 @@ class User():
             db.insert('users', (card_uid, last_name, first_name, login, password))
             db.delete('auth_log', [('card_uid', card_uid)])
 
-            results = db.select('users', conditions=[('login', login)])
-            if len(results) == 0:
-                return 1
+            return self.get_users()
 
-            del results[0]['id']
-            del results[0]['password']
-            return results[0]
+        except Exception as e:
+            print(e)
+            return 1
 
+    def delete_user(self, card_uid):
+        try:
+            db.delete('users', conditions=[('card_uid', card_uid)])
+            db.delete('auth_log', conditions=[('card_uid', card_uid)])
+
+            return self.get_users()
+        except Exception as e:
+            print(e)
+            return 1
+            
+    def get_users(self):
+        try:
+            results = db.select('users');
+            response = {}
+
+            count = 0
+            for user in results:
+                del user['password']
+                response[count] = user
+                count +=1
+
+            return response
         except Exception as e:
             print(e)
             return 1

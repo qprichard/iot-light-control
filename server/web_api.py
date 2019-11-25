@@ -7,10 +7,33 @@ from utils.authenticate import authenticate as auth_verification
 import json
 
 @post('/users')
-def add_user():
+@auth_verification
+def add_user(user=None):
     data = json.loads(request.body.read())
     user_created = User().create_user(data)
     return user_created
+
+@get('/users')
+@auth_verification
+def get_users(user=None):
+
+    users = User().get_users()
+    if users == 1:
+        return {}
+
+    return users
+
+@delete('/users')
+@auth_verification
+def delete_user(user=None):
+    data = json.loads(request.body.read())
+    card_uid = data.get('card_uid')
+
+    users = User().delete_user(card_uid)
+    if users == 1:
+        return {}
+        
+    return users
 
 @post('/authenticate')
 def authenticate():
@@ -33,7 +56,8 @@ def get_auth_log(user=None):
     return AuthLog().get(card_uid, limit)
 
 @delete('/auth_log')
-def delete_auth_log():
+@auth_verification
+def delete_auth_log(user = None):
     data = json.loads(request.body.read())
     card_uid = data.get('card_uid', None)
 
