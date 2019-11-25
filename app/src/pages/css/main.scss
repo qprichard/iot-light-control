@@ -1,0 +1,31 @@
+
+@import "./colors.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  width: 100%;
+  font-family: "courier,arial,helvetica";
+  background-color: $bg-color;
+  text-align: center;
+
+  .main-top {
+    background-color: $dark-blue;
+  }
+
+  .main-container {
+
+    .main-management {
+      width: 70%;
+      float: left;
+    }
+
+    .main-log {
+      width: 30%;
+      float: right;
+    }
+  }
+}

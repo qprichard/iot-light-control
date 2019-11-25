@@ -1,0 +1,15 @@
+@import "../colors.scss";
+
+.menu {
+  padding: 50px;
+
+  .menu-title {
+    color: $white;
+    text-align: left;
+    font-size: 2em;
+    vertical-align: middle;
+  }
+
+  .menu-content {
+  }
+}
