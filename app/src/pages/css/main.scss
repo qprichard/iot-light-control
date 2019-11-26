@@ -1,0 +1,93 @@
+
+@import "./colors.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  width: 100%;
+  font-family: "courier,arial,helvetica";
+  background-color: $bg-color;
+  text-align: center;
+
+  .main-top {
+
+  }
+
+  .main-container {
+
+    .main-management {
+      width: 60%;
+      float: left;
+
+      .management {
+        .users-page {
+          .users-title{
+            font-size: 1.5em;
+            font-weight: bold;
+          }
+
+          .user-list {
+            float: left;
+            .user-list-title {
+              font-size: 1.2em;
+              font-weight: bold;
+            }
+            table {
+              margin: 20px auto;
+              text-align: left;
+              border: solid;
+              td {
+                padding: 5px;
+              }
+              thead {
+                text-align: center;
+                background-color: grey;
+              }
+            }
+          }
+
+          .user-create {
+            float: right;
+            .user-create-title {
+              font-size: 1.2em;
+              font-weight: bold;
+            }
+
+            text-align: center;
+
+            input{
+              margin: 5px auto;
+              display: block;
+            }
+          }
+        }
+
+        .general-page {
+          .general-page-title {
+            font-size: 1.5em;
+            font-weight: bold;
+          }
+          .general-charts {
+            margin-top: 10px;
+
+            .charts-management {
+
+            }
+
+            .charts-display {
+              
+            }
+          }
+        }
+      }
+    }
+
+    .main-log {
+      width: 40%;
+      float: right;
+    }
+  }
+}

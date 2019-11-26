@@ -74,3 +74,7 @@ reload the mosquitto service to reload configuration file
 ###SQLite configuration
 
 * pip install pysqlite3 db-sqlite3
+
+install nvm to run npm
+
+* `npm create-react-app app .`

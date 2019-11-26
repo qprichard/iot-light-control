@@ -1,0 +1,20 @@
+.log-container {
+
+  .log-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  table {
+    margin: 20px auto;
+    text-align: left;
+    border: solid;
+    td {
+      padding: 5px;
+    }
+    thead {
+      text-align: center;
+      background-color: grey;
+    }
+  }
+}
