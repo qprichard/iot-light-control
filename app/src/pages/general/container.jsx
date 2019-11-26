@@ -27,7 +27,7 @@ const MyLineChart = ({data, color}) => {
   })
 
   return (
-    <LineChart
+    <Bc
        width={1000}
        height={300}
        data={my_data}
@@ -43,11 +43,11 @@ const MyLineChart = ({data, color}) => {
        {
          loginList.map((login) => {
            return (
-             <Line dataKey={login} stroke={`#${color}`} />
+             <Bar dataKey={login} fill={`#${color}`} />
            )
          })
        }
-     </LineChart>
+     </Bc>
   )
 }
 
@@ -86,7 +86,6 @@ const General = () => {
   const [filter, setFilter] = React.useState('hour')
 
   const color = React.useMemo(() => Math.floor(Math.random()*16777215).toString(16), [])
-  console.log(filter)
 
   const my_fetch = () => fetch_stats(setLogs,filter)
 
