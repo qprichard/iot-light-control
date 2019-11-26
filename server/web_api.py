@@ -32,7 +32,7 @@ def delete_user(user=None):
     users = User().delete_user(card_uid)
     if users == 1:
         return {}
-        
+
     return users
 
 @post('/authenticate')
@@ -64,6 +64,14 @@ def delete_auth_log(user = None):
     if card_uid == None:
         return AuthLog().delete()
     return AuthLog().delete([('card_uid', card_uid)])
+
+@get('/stats')
+@auth_verification
+def get_stats(user=None):
+    data = request.query.decode()
+    filter = data.get('filter', 'hour')
+
+    return AuthLog().get_stats(filter)
 
 @hook('after_request')
 #@bottle.route('/:#.*#', method='OPTIONS')  # Also tried old syntax.
