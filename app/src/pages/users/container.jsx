@@ -11,7 +11,7 @@ const Users = () => {
 
   React.useEffect(() => {
     get_users(setUsers);
-    fetch_logs(10, setAuthLogs)
+    fetch_logs(setAuthLogs, 10)
   }, []);
 
   const handleCreate = React.useCallback(() => { create_user(form, setUsers) }, [form]);

@@ -6,7 +6,7 @@ const Log = () => {
   const [logs, setLogs] = React.useState({});
 
 
-  const my_fetch = () => fetch_logs(10, setLogs)
+  const my_fetch = () => fetch_logs(setLogs,10)
 
   React.useEffect(() => {
     let inter = setInterval(my_fetch, 3000)

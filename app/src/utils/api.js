@@ -48,8 +48,9 @@ export function fetch_login(data, set) {
   ).catch((e) => { return; })
 }
 
-export function fetch_logs(limit, set) {
-  fetch_api('GET', `/auth_log?limit=${limit}`).then(
+export function fetch_logs(set, limit) {
+  const url = limit ? `/auth_log?limit=${limit}` : "/auth_log"
+  fetch_api('GET', url).then(
     async (response) => {
       if(response.status !== 200) {
         return;
@@ -86,6 +87,19 @@ export function create_user(data, set) {
 
 export function delete_user(data, set) {
   fetch_api('DELETE', '/users', data).then(
+    async(response) => {
+      if(response.status !== 200) {
+        return;
+      }
+      const rep = await response.json()
+      set(rep)
+    }
+  ).catch(() => {return; })
+}
+
+export function fetch_stats(set, filter) {
+  const url = filter ? `/stats?filter=${filter}` : '/stats'
+  fetch_api('GET', url).then(
     async(response) => {
       if(response.status !== 200) {
         return;

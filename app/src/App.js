@@ -8,7 +8,7 @@ import{ Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   React.useEffect(() => {
-    window.localStorage.removeItem('userInfo')
+    //window.localStorage.removeItem('userInfo')
   }, [])
     return (
     <Router basename="/access-control">
